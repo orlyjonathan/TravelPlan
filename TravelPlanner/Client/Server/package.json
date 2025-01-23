@@ -1,0 +1,37 @@
+{
+  "name": "pet-store",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.ts"
+  },
+  "keywords": [],
+  "author": "Maya & Orly",
+  "license": "ISC",
+  "description": "pet store site",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.5",
+    "@types/node-fetch": "^2.6.12",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "jwt-simple": "^0.5.6",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.5",
+    "nodemodule": "^0.3.0",
+    "scss": "^0.2.4"
+  }
+}

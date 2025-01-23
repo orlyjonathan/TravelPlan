@@ -1,2 +1,0 @@
-# TravelPlan
-Travel itinerary Planner
