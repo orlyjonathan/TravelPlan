@@ -8,13 +8,7 @@ const app = express()
 const port = process.env.PORT || 3000;
 const dbPassword=process.env.DBPASSWORD as string;
 
-app.use(
-  cors({
-      origin: 'http://localhost:5174', // Allow requests from your frontend
-      methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-      credentials: true, // Allow cookies if needed
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(express.static('client/build'));
 app.use(cookieParser());
@@ -35,8 +29,6 @@ mongoose.connect(`${DBurl}/${database}`).then(()=>{
 //routes
 import authRoutes from './routes/authRoutes';
 app.use("/api/auth", authRoutes);
-app.use("/api/auth/register", authRoutes);
-app.use("/api/auth/login", authRoutes);
 
 
 app.listen(port, () => {

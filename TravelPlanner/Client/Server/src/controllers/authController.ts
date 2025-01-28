@@ -5,6 +5,21 @@ const User = require('../model/userModel/userModel');
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
 
+
+export async function addUser(req: Request, res: Response) {
+        try {
+            const { name, email, password } = req.body;
+    
+            const user = new User({ name, email, password });
+            await user.save();
+    
+            res.status(201).json({ message: 'User added successfully' });
+        } catch (error) {
+            console.error('Error adding user:', error);
+            res.status(500).json({ error: 'Error adding user' });
+        }
+    }
+
 export async function register(req: Request, res: Response) {
     try {
         const { name, email, password } = req.body;
@@ -24,9 +39,9 @@ export async function register(req: Request, res: Response) {
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Server error' });
-    }
+        console.error('Registration error:', error);
+        return res.status(500).json({ error: (error as Error).message });
+      }
 }
 
 export async function login (req:Request, res: Response) {
