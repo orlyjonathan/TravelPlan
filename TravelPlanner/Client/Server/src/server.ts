@@ -35,6 +35,8 @@ mongoose.connect(`${DBurl}/${database}`).then(()=>{
 //routes
 import authRoutes from './routes/authRoutes';
 app.use("/api/auth", authRoutes);
+app.use("/api/auth/register", authRoutes);
+app.use("/api/auth/login", authRoutes);
 
 
 app.listen(port, () => {
