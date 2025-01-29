@@ -1,5 +1,5 @@
 {
-  "name": "pet-store",
+  "name": "travel-plan",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -7,7 +7,7 @@
     "dev": "nodemon src/server.ts"
   },
   "keywords": [],
-  "author": "Maya & Orly",
+  "author": "Orly",
   "license": "ISC",
   "description": "pet store site",
   "devDependencies": {
@@ -24,10 +24,11 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "jwt-simple": "^0.5.6",
     "mongodb": "^6.12.0",

@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 import cookieParser from 'cookie-parser'; 
 import 'dotenv/config';
 import cors from 'cors'; //npm install cors
+const jwt = require('jsonwebtoken');
 
 const app = express()
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const dbPassword=process.env.DBPASSWORD as string;
 
 app.use(cors());
@@ -29,6 +30,8 @@ mongoose.connect(`${DBurl}/${database}`).then(()=>{
 //routes
 import authRoutes from './routes/authRoutes';
 app.use("/api/auth", authRoutes);
+import itineraryRoutes from './routes/itineraryRoutes';
+app.use("/api/itinerary", itineraryRoutes);
 
 
 app.listen(port, () => {

@@ -8,7 +8,7 @@ const Login = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+            const response = await axios.post('http://localhost:3001/api/auth/login', { email, password });
             alert(response.data.message);
             console.log('Token:', response.data.token);
         } catch (error: any) {
