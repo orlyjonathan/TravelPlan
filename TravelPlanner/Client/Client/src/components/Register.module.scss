@@ -1,0 +1,61 @@
+/* RegisterForm.module.scss */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://cdn.shopify.com/s/files/1/0074/4505/3498/files/Sunset-ball.jpg?v=1528296075') no-repeat center center/cover;
+    padding: 20px;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+form h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+form a {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+form a:hover {
+    text-decoration: underline;
+}

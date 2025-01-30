@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-
-const containerStyle = {
-  width: "100vw",
-  height: "100vh",
-  position: "absolute" as "absolute",
-  top: 0,
-  left: 0,
-  zIndex: -1, // Ensure the map stays in the background
-};
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 const center = {
   lat: 40.7128, // Default to New York, change as needed
-  lng: -74.006,
+  lng: -74.0060,
 };
 
 interface MapProps {
@@ -20,30 +13,30 @@ interface MapProps {
 }
 
 const MapComponent: React.FC<MapProps> = ({ setDestination }) => {
-  const [marker, setMarker] = useState<{ lat: number; lng: number } | null>(
-    null
-  );
+  const [marker, setMarker] = useState<{ lat: number; lng: number } | null>(null);
 
-  const handleMapClick = (event: google.maps.MapMouseEvent) => {
-    if (event.latLng) {
-      const lat = event.latLng.lat();
-      const lng = event.latLng.lng();
-      setMarker({ lat, lng });
-      setDestination(lat, lng);
-    }
+  // This function listens for map clicks
+  const MapClickHandler = () => {
+    useMapEvents({
+      click(event) {
+        const lat = event.latlng.lat;
+        const lng = event.latlng.lng;
+        setMarker({ lat, lng });
+        setDestination(lat, lng);
+      }
+    });
   };
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY!}>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={5}
-        onClick={handleMapClick}
-      >
-        {marker && <Marker position={marker} />}
-      </GoogleMap>
-    </LoadScript>
+    <MapContainer center={center} zoom={5} style={{ height: "100vh", width: "100%" }}>
+      {/* Use Mapbox Satellite TileLayer */}
+      <TileLayer
+        url="https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=YOUR_MAPBOX_ACCESS_TOKEN"
+        attribution="Map data &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
+      />
+      <MapClickHandler />
+      {marker && <Marker position={marker}><Popup>Marker at {marker.lat}, {marker.lng}</Popup></Marker>}
+    </MapContainer>
   );
 };
 

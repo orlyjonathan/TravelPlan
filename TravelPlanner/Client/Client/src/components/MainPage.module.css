@@ -1,0 +1,44 @@
+.main-container {
+  width: 100%;
+  height: 100vh;
+  background: url("https://cdn.shopify.com/s/files/1/0074/4505/3498/files/Sunset-ball.jpg?v=1528296075") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: flex-start;
+  /* Align to the top */
+  text-align: center;
+  padding-top: 50px;
+  /* Space from the top */
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.cta-button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}

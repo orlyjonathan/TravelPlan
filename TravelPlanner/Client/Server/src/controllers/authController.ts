@@ -28,7 +28,7 @@ export async function register(req: Request, res: Response) {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({ email: req.body.email });
         if (existingUser) {
             return res.status(400).json({ error: 'Email already in use' });
         }
@@ -52,7 +52,7 @@ export async function login (req:Request, res: Response) {
             return res.status(400).send({ error: 'All fields are required' });
         }
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email: req.body.email });
         if (!user) {
             return res.status(401).send({ error: 'Invalid email or password' });
         }

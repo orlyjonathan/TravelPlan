@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styles from './Login.module.scss';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -17,6 +18,7 @@ const Login = () => {
     };
 
     return (
+        <div className={styles['form-container']}>
         <form onSubmit={handleSubmit}>
             <h2>Login</h2>
             <input
@@ -35,6 +37,7 @@ const Login = () => {
             />
             <button type="submit">Login</button>
         </form>
+        </div>
     );
 };
 

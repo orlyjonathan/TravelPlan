@@ -1,19 +1,35 @@
-import mongoose, { Schema, Document } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 
+// Itinerary Schema
+const itinerarySchema = new Schema(
+  {
+    userId: { type: String, required: true },
+    visited: [
+      {
+        destination: { type: String, required: true },
+        startDate: { type: String, required: true },
+        endDate: { type: String, required: true },
+      },
+    ],
+    planned: [
+      {
+        destination: { type: String, required: true },
+        startDate: { type: String, required: true },
+        endDate: { type: String, required: true },
+      },
+    ],
+  },
+  { timestamps: true }
+);
+
+// Itinerary Model
 interface IItinerary extends Document {
-    userId: string;
-    destination: string;
-    startDate: Date;
-    endDate: Date;
-    places: string[];
+  userId: string;
+  visited: Array<{ destination: string; startDate: string; endDate: string }>;
+  planned: Array<{ destination: string; startDate: string; endDate: string }>;
 }
 
-const ItinerarySchema = new Schema<IItinerary>({
-    userId: { type: String, required: true },
-    destination: { type: String, required: true },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
-    places: { type: [String], required: true },
-});
+const Itinerary = model<IItinerary>("Itinerary", itinerarySchema);
 
-export default mongoose.model<IItinerary>("Itinerary", ItinerarySchema);
+export default Itinerary;
+

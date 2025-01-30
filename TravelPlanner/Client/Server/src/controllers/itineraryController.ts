@@ -1,43 +1,51 @@
 import { Request, Response } from "express";
 import Itinerary from "../model/ItineraryModel/Itinerary";
 
-export const createItinerary = async (req: Request, res: Response) => {
-    try {
-        const { userId, destination, startDate, endDate, places } = req.body;
 
-        if (!userId || !destination || !startDate || !endDate) {
-            return res.status(400).json({ error: "All fields are required" });
-        }
+// Fetch itineraries by userId
+export const getItineraryByUserId = async (req: Request, res: Response) => {
+  const userId = req.params.userId;
 
-        const newItinerary = new Itinerary({
-            userId,
-            destination,
-            startDate,
-            endDate,
-            places,
-        });
+  try {
+    // Fetch itinerary by userId
+    const itinerary = await Itinerary.findOne({ userId });
 
-        await newItinerary.save();
-        res.status(201).json({ message: "Itinerary created successfully", itinerary: newItinerary });
-    } catch (error) {
-        console.error("Itinerary creation error:", error);
-        res.status(500).json({ error: "Server error" });
+    if (!itinerary) {
+      return res.status(404).json({ error: "Itinerary not found" });
     }
+
+    res.status(200).json(itinerary);
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
 };
 
-// Get itineraries by user ID
-export const getItineraries = async (req: Request, res: Response) => {
-    try {
-        const { userId } = req.params;
-        const itineraries = await Itinerary.find({ userId });
+// Add or update a user's itinerary
+export const addItinerary = async (req: Request, res: Response) => {
+  const { userId, visited, planned } = req.body;
 
-        if (!itineraries.length) {
-            return res.status(404).json({ message: "No itineraries found for this user" });
-        }
+  try {
+    // Check if itinerary exists for the user
+    let itinerary = await Itinerary.findOne({ userId });
 
-        res.status(200).json(itineraries);
-    } catch (error) {
-        console.error("Error fetching itineraries:", error);
-        res.status(500).json({ error: "Server error" });
+    if (!itinerary) {
+      // Create a new itinerary if it doesn't exist
+      itinerary = new Itinerary({
+        userId,
+        visited,
+        planned,
+      });
+      await itinerary.save();
+      return res.status(201).json({ message: "Itinerary created" });
     }
+
+    // Update the existing itinerary
+    itinerary.visited = visited;
+    itinerary.planned = planned;
+    await itinerary.save();
+
+    res.status(200).json({ message: "Itinerary updated" });
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
 };

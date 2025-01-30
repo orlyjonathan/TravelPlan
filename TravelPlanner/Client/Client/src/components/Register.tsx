@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import styles from './Register.module.scss';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -22,32 +23,37 @@ const Register = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Register</h2>
-            <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-            />
-            <input
-                type="email"                
-                placeholder="Email"
-                value={email}                
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />            
-            <button type="submit">Register</button>
-            <Link to="/login">Login</Link>
-        </form>
+        
+        <form onSubmit={handleSubmit} className={styles.form}>
+        <h2 className={styles.formHeading}>Register</h2>
+        <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={styles.input}
+            required
+        />
+        <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+            required
+        />
+        <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+            required
+        />
+        <button type="submit" className={styles.submitBtn}>Register</button>
+        <Link to="/login" className={styles.loginLink}>Login</Link>
+    </form>
+    
     );
 };
 export default Register;

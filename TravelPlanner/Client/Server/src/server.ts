@@ -1,31 +1,33 @@
 import express from 'express';
 import mongoose from "mongoose";
 import cookieParser from 'cookie-parser'; 
-import 'dotenv/config';
 import cors from 'cors'; //npm install cors
 const jwt = require('jsonwebtoken');
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express()
 const port = process.env.PORT || 3001;
-const dbPassword=process.env.DBPASSWORD as string;
+const dbPassword=process.env.DB_PASSWORD as string;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('client/build'));
+app.use(express.static('public'));
 app.use(cookieParser());
 
 
 //DB
 const DBurl = process.env.DB_URL;
-const database = process.env.DB_NAME;
-console.log(DBurl,database)
 
-//connection
-mongoose.connect(`${DBurl}/${database}`).then(()=>{
-    console.info("DB connected")
-}).catch((err)=>{
-    console.error(err)
-});
+if (!DBurl) {
+    console.error("ERROR: DB_URL is not defined in .env file");
+    process.exit(1); // Stop execution if the DB URL is missing
+}
+
+mongoose.connect(DBurl)
+    .then(() => console.info("✅ DB connected successfully"))
+    .catch((err) => console.error("DB connection error:", err));
+
 
 //routes
 import authRoutes from './routes/authRoutes';
