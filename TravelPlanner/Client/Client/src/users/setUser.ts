@@ -2,7 +2,7 @@ import { User } from '../model/userModel';
 
 export const registerToDB = async (userData: User) => {
   try {
-        const response = await fetch('http://localhost:3001/api/user/register', {
+        const response = await fetch('http://localhost:3005/api/user/register', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ export const registerToDB = async (userData: User) => {
 
 export const loginToDB = async (email: string, password: string) => {
   try {
-    const response = await fetch('http://localhost:3001/api/user/login', {
+    const response = await fetch('http://localhost:3005/api/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

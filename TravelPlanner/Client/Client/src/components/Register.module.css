@@ -1,61 +1,32 @@
-/* RegisterForm.module.scss */
-.form-container {
+.form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
   background: url("https://cdn.shopify.com/s/files/1/0074/4505/3498/files/Sunset-ball.jpg?v=1528296075") no-repeat center center/cover;
-  padding: 20px;
 }
 
-form {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 40px;
-  border-radius: 10px;
-  width: 300px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-form h2 {
-  color: white;
-  margin-bottom: 20px;
+.formHeading {
   font-size: 24px;
+  font-weight: bold;
 }
 
-form input {
-  width: 100%;
+.input {
   padding: 10px;
-  margin: 10px 0;
-  background-color: #fff;
+  margin-bottom: 10px;
   border-radius: 5px;
-  border: none;
-  font-size: 16px;
+  border: 1px solid #ccc;
 }
 
-form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
+.submitBtn {
+  background-color: blue;
   color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
+  padding: 10px;
   border: none;
+  cursor: pointer;
 }
 
-form button:hover {
-  background-color: #0056b3;
-}
-
-form a {
-  display: block;
+.loginLink {
   margin-top: 10px;
-  color: #007bff;
   text-decoration: none;
-  font-size: 14px;
-}
-
-form a:hover {
-  text-decoration: underline;
+  color: blue;
 }

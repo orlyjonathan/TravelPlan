@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const HomePage = () => {
-    const [visitedPlaces, setVisitedPlaces] = useState([]);
-    const [plannedPlaces, setPlannedPlaces] = useState([]);
+    const [visitedPlaces, setVisitedPlaces] = useState<{ destination: string; startDate: string; endDate: string }[]>([]);
+    const [plannedPlaces, setPlannedPlaces] = useState<{ destination: string; startDate: string; endDate: string }[]
+>([]);
 
     useEffect(() => {
         // Fetch the user's itinerary data, assuming the user has an ID (e.g., "123")

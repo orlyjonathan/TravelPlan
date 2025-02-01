@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express()
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3005;
 const dbPassword=process.env.DB_PASSWORD as string;
 
 app.use(cors());

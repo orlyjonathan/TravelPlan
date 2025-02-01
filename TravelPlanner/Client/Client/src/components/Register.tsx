@@ -11,7 +11,7 @@ const Register = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3001/api/auth/register', {
+            const response = await axios.post('http://localhost:3005/api/auth/register', {
                 name,
                 email,
                 password,
@@ -23,7 +23,7 @@ const Register = () => {
     };
 
     return (
-        
+     
         <form onSubmit={handleSubmit} className={styles.form}>
         <h2 className={styles.formHeading}>Register</h2>
         <input
